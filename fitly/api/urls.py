@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.urls import path, include
+
+from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
 from rest_framework import routers
-from .views import ProjectViewset, Test
+
+from fitly.nutrition.views import IngredientViewSet
 from rest_framework import routers, serializers, viewsets
 from django.contrib.auth.models import User
 
@@ -21,12 +22,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
-
-router = DefaultRouter()
-router.register('router', ProjectViewset, basename='project')
-urlpatterns = router.urls
+router.register(r'ingredient', IngredientViewSet)
     
 urlpatterns = [path('', include(router.urls)),
-    path('fin/',Test.as_view()),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path('^', include(router.urls))
     ]

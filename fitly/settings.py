@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'fitly.api',
     'fitly.nutrition',
+    'fitly.demo',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'fitly.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(PROJECT_PATH, 'templates/')],
+        'DIRS': [os.path.join(PROJECT_PATH, 'templates/'), os.path.join(PROJECT_PATH, 'demo/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
