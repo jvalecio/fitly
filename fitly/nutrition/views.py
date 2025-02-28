@@ -1,5 +1,6 @@
 from django.shortcuts import render
-
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.mixins import (
     CreateModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 )
@@ -14,5 +15,8 @@ class IngredientViewSet(GenericViewSet,
                         UpdateModelMixin,
                         ListModelMixin):
     
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = IngredientSerializer
     queryset = IngredientModel.objects.all()
+    
